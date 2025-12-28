@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import pickle
 import requests
-import os
 
 st.markdown("""
     <style>
@@ -18,8 +17,8 @@ st.markdown("""
         cursor: pointer;
     }
     .movie-img:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        transform: scale(1.05); /* Slight Zoom */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Drop Shadow */
     }
     .movie-title {
         font-size: 14px;
@@ -73,7 +72,6 @@ def fetch_poster(movie_id):
 
 
 def recommend(movie):
-    st.snow()
     index = movie_list[movie_list['title'] == movie].index[0]
     distances = similarity[index]
     movies = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
