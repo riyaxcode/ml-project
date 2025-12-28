@@ -3,7 +3,6 @@ import pandas as pd
 import pickle
 import requests
 
-# --- CSS STYLING ---
 st.markdown("""
     <style>
     /* 1. MOVIE CARD STYLES (Hover Effect) */
@@ -56,7 +55,6 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-
 def fetch_poster(movie_id):
     try:
         url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=429d8ef2a929d522ee1b9cb1043e6961&language=en-US"
@@ -89,8 +87,6 @@ def recommend(movie):
 
     return recommended_movies, recommended_movies_posters
 
-
-# --- Load Data ---
 try:
     movie_dict = pickle.load(open('movie_dict.pkl', 'rb'))
     movie_list = pd.DataFrame(movie_dict)
@@ -106,7 +102,6 @@ option = st.selectbox(
     movie_list['title'].values
 )
 
-# This button is now styled by the CSS above
 if st.button("Recommend"):
     with st.spinner('Fetching recommendations...'):
         names, posters = recommend(option)
